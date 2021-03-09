@@ -1,6 +1,4 @@
 import React from "react";
-import GeussingField from "./GeussingField";
-import Header from "./Header";
 
 export default function App() {
   const pokemonArray = [
@@ -121,17 +119,6 @@ export default function App() {
       Src: "https://cdn.bulbagarden.net/upload/6/65/609Chandelure.png",
     },
   ];
-  let hintList = {
-    name: "...",
-    type1: "...",
-    type2: "...",
-    id: "...",
-    generation: "...",
-  };
-  return (
-    <div>
-      <Header pokemonArray={pokemonArray} />
-      <GeussingField hintList={hintList} pokemonArray={pokemonArray} />
-    </div>
-  );
+
+  return <div></div>;
 }
