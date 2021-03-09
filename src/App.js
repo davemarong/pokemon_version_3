@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "./Header";
+import Guessingfield from "./Guessingfield";
+import Hintfield from "./Hintfield";
+import ButtonField from "./Buttonfield";
+import ImageField from "./Imagefield";
 
 export default function App() {
+  const [pokemonState, setPokemonState] = useState();
+
   const pokemonArray = [
     {
       Type: {
@@ -120,5 +127,22 @@ export default function App() {
     },
   ];
 
-  return <div></div>;
+  let number;
+  let selectedPokemon;
+  function choosePokemon() {
+    number = Math.floor(Math.random() * 5) + 1;
+    selectedPokemon = pokemonArray[number];
+    console.log(number);
+    console.log(selectedPokemon);
+  }
+  choosePokemon();
+  return (
+    <div>
+      <Header />
+      <Guessingfield />
+      <Hintfield selectedPokemon={selectedPokemon} />
+      <ButtonField />
+      <ImageField />
+    </div>
+  );
 }
