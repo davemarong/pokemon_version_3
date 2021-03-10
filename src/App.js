@@ -126,24 +126,24 @@ export default function App() {
       Src: "https://cdn.bulbagarden.net/upload/6/65/609Chandelure.png",
     },
   ];
-
+  // let howManyPokemonHasBeenSelected;
   let number;
-  let selectedPokemon = {
-    Name: "",
-    Pokedex: "",
-    Generation: "",
-    Type: {
-      Type1: "",
-      Type2: "",
+  let selectedPokemon = [
+    {
+      Name: "",
+      Pokedex: "",
+      Generation: "",
+      Type: {
+        Type1: "",
+        Type2: "",
+      },
     },
-  };
+  ];
   function choosePokemon() {
     number = Math.floor(Math.random() * 5) + 1;
-    selectedPokemon = pokemonArray[number];
-    console.log(number);
-    console.log(selectedPokemon);
+    selectedPokemon.unshift(pokemonArray[number]);
   }
-
+  choosePokemon();
   return (
     <div>
       <Header />

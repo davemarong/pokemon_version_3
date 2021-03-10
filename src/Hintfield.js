@@ -6,14 +6,14 @@ export default function Hintfield({ selectedPokemon }) {
   const [generationState, setGenerationState] = useState("");
   const [type1State, setType1State] = useState("");
   const [type2State, setType2State] = useState("");
-
+  // console.log(selectedPokemonLength);
   const {
     Name,
     Pokedex,
     Generation,
     Type: { Type1, Type2 },
-  } = selectedPokemon;
-
+  } = selectedPokemon[0];
+  // console.log(Name);
   return (
     <>
       <div>
