@@ -6,8 +6,6 @@ import ButtonField from "./Buttonfield";
 import ImageField from "./Imagefield";
 
 export default function App() {
-  const [pokemonState, setPokemonState] = useState();
-
   const pokemonArray = [
     {
       Type: {
@@ -126,7 +124,6 @@ export default function App() {
       Src: "https://cdn.bulbagarden.net/upload/6/65/609Chandelure.png",
     },
   ];
-  // let howManyPokemonHasBeenSelected;
   let number;
   let selectedPokemon = [
     {
@@ -142,13 +139,24 @@ export default function App() {
   function choosePokemon() {
     number = Math.floor(Math.random() * 5) + 1;
     selectedPokemon.unshift(pokemonArray[number]);
+    console.log(selectedPokemon);
   }
   choosePokemon();
+  const [selectedPokemonState, setSelectedPokemonState] = useState(
+    selectedPokemon
+  );
   return (
     <div>
       <Header />
       <Guessingfield />
-      <Hintfield selectedPokemon={selectedPokemon} />
+      <Hintfield selectedPokemon={selectedPokemonState} />
+      <button
+        onClick={() => {
+          choosePokemon();
+        }}
+      >
+        Start
+      </button>
       <ButtonField />
       <ImageField />
     </div>
