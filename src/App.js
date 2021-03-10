@@ -149,16 +149,12 @@ export default function App() {
     <div>
       <Header />
       <Guessingfield />
-      <Hintfield selectedPokemon={selectedPokemonState} />
-      <button
-        onClick={() => {
-          choosePokemon();
-        }}
-      >
-        Start
-      </button>
+      <Hintfield
+        selectedPokemon={selectedPokemonState}
+        choosePokemon={choosePokemon}
+      />
       <ButtonField />
-      <ImageField />
+      <ImageField selectedPokemon={selectedPokemonState} />
     </div>
   );
 }
