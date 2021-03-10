@@ -128,14 +128,22 @@ export default function App() {
   ];
 
   let number;
-  let selectedPokemon;
+  let selectedPokemon = {
+    Name: "",
+    Pokedex: "",
+    Generation: "",
+    Type: {
+      Type1: "",
+      Type2: "",
+    },
+  };
   function choosePokemon() {
     number = Math.floor(Math.random() * 5) + 1;
     selectedPokemon = pokemonArray[number];
     console.log(number);
     console.log(selectedPokemon);
   }
-  choosePokemon();
+
   return (
     <div>
       <Header />

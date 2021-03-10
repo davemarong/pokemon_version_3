@@ -4,9 +4,16 @@ export default function Hintfield({ selectedPokemon }) {
   const [nameState, setNameState] = useState("");
   const [pokedexState, setPokedexState] = useState("");
   const [generationState, setGenerationState] = useState("");
+  const [type1State, setType1State] = useState("");
+  const [type2State, setType2State] = useState("");
 
-  const { Name, Pokedex, Generation } = selectedPokemon;
-  console.log(Name);
+  const {
+    Name,
+    Pokedex,
+    Generation,
+    Type: { Type1, Type2 },
+  } = selectedPokemon;
+
   return (
     <>
       <div>
@@ -43,14 +50,26 @@ export default function Hintfield({ selectedPokemon }) {
         <span>{generationState}</span>
       </div>
       <div>
-        <span></span>
-        <button>Show hint</button>
-        <span></span>
+        <span>Type 1:</span>
+        <button
+          onClick={() => {
+            setType1State(Type1);
+          }}
+        >
+          Show hint
+        </button>
+        <span>{type1State}</span>
       </div>
       <div>
-        <span></span>
-        <button>Show hint</button>
-        <span></span>
+        <span>Type 2:</span>
+        <button
+          onClick={() => {
+            setType2State(Type2);
+          }}
+        >
+          Show hint
+        </button>
+        <span>{type2State}</span>
       </div>
     </>
   );
