@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-export default function Hintfield({ selectedPokemon, choosePokemon }) {
+export default function Hintfield({
+  selectedPokemon,
+  choosePokemon,
+  setSelectedPokemonState,
+}) {
   const [nameState, setNameState] = useState("");
   const [pokedexState, setPokedexState] = useState("");
   const [generationState, setGenerationState] = useState("");
@@ -14,7 +18,15 @@ export default function Hintfield({ selectedPokemon, choosePokemon }) {
   } = selectedPokemon[0];
   return (
     <>
-      <button onClick={choosePokemon}>Start</button>
+      <button
+        onClick={() => {
+          choosePokemon();
+          console.log("yep");
+          setSelectedPokemonState(selectedPokemon);
+        }}
+      >
+        Start
+      </button>
       <div>
         <span>Name:</span>
         <button

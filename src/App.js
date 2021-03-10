@@ -152,6 +152,7 @@ export default function App() {
       <Hintfield
         selectedPokemon={selectedPokemonState}
         choosePokemon={choosePokemon}
+        setSelectedPokemonState={setSelectedPokemonState}
       />
       <ButtonField />
       <ImageField selectedPokemon={selectedPokemonState} />
