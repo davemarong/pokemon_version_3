@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Buttonfield() {
+export default function Hintsection() {
   return <div></div>;
 }
