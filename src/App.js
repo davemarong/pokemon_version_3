@@ -1,14 +1,26 @@
 import React from "react";
 
 export default function App() {
-  let promise = fetch("https://pokeapi.co/api/v2/pokemon/mew");
-  console.log(promise);
+  let allPokemon = [];
   async function pokemon() {
-    const response = await promise;
-    console.log(response);
-    const result = await response;
-    console.log(result);
+    for (let i = 1; i < 3; i++) {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+      const result = await response.json();
+      allPokemon.push(result);
+    }
   }
+  const newpokoem = [{ hei: "hei" }, { ja: "ja" }];
   pokemon();
-  return <div></div>;
+  console.log(allPokemon);
+  console.log(newpokoem);
+  return (
+    <>
+      <div>
+        {allPokemon.map((pokemon) => (
+          <div key={pokemon.name}>{pokemon.name}</div>
+        ))}
+      </div>
+      {/* <div>{allPokemon[0].name}</div> */}
+    </>
+  );
 }
