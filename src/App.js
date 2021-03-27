@@ -1,26 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import FetchPokemon from "./components/FetchPokemon";
+import Hints from "./components/Hints";
 
 export default function App() {
-  let allPokemon = [];
-  async function pokemon() {
-    for (let i = 1; i < 3; i++) {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-      const result = await response.json();
-      allPokemon.push(result);
-    }
-  }
-  const newpokoem = [{ hei: "hei" }, { ja: "ja" }];
-  pokemon();
-  console.log(allPokemon);
-  console.log(newpokoem);
+  const [pokemon, setPokemon] = useState({});
+  const [allPokemon, setAllPokemon] = useState([]);
   return (
     <>
-      <div>
-        {allPokemon.map((pokemon) => (
-          <div key={pokemon.name}>{pokemon.name}</div>
-        ))}
-      </div>
-      {/* <div>{allPokemon[0].name}</div> */}
+      <FetchPokemon
+        pokemon={pokemon}
+        setPokemon={setPokemon}
+        allPokemon={allPokemon}
+        setAllPokemon={setAllPokemon}
+      />
+      {/* <Hints pokemon={pokemon} /> */}
     </>
   );
 }
