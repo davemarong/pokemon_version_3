@@ -13,7 +13,7 @@ export default function FetchPokemon({
       setPokemon(data);
     };
     let randomNumber = Math.floor(Math.random() * 152) + 1;
-    fetchOnePokemon(`https://pokeapi.co/api/v2/pokemon/5`);
+    fetchOnePokemon(`https://pokeapi.co/api/v2/pokemon/`);
   }, [allPokemon]);
   console.log(pokemon.types[0].type.name);
 
