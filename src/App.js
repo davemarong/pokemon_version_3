@@ -1,21 +1,59 @@
 import React, { useState } from "react";
-import Api from "./components/Api";
-import FetchPokemon from "./components/FetchPokemon";
-import Hints from "./components/Hints";
-
+import Hints from "./components/hints/Hints";
+import { PokemonProvider } from "./components/context/pokemonContext";
+import DisplayPokemon from "./components/displayPokemon/DisplayPokemon";
+import fetchPokemon from "./components/fetchPokemon/FetchPokemonData";
+import UserGuess from "./components/quessfield/UserGuess";
 export default function App() {
-  const [pokemon, setPokemon] = useState({});
-  const [allPokemon, setAllPokemon] = useState([]);
+  const [userGuess, setUserGuess] = useState();
+  const [pokemonStats, setPokemonStats] = useState({
+    namePS: false,
+    idPS: false,
+    heightPS: false,
+    imgPS: false,
+    type1PS: false,
+    type2PS: false,
+  });
+  const [pokemon, setPokemon] = useState({
+    name: "",
+    id: "",
+    height: "",
+    types: [
+      {
+        type: {
+          name: "",
+        },
+      },
+      {
+        type: {
+          name: "Only 1 type",
+        },
+      },
+    ],
+    sprites: {
+      front_default: "",
+    },
+  });
   return (
-    <>
-      <Api />
-      {/* <FetchPokemon
-        pokemon={pokemon}
-        setPokemon={setPokemon}
-        allPokemon={allPokemon}
-        setAllPokemon={setAllPokemon}
-      /> */}
-      {/* <Hints pokemon={pokemon} /> */}
-    </>
+    <div>
+      <PokemonProvider
+        value={{
+          pokemonState: [pokemon, setPokemon],
+          pokemonStatsState: [pokemonStats, setPokemonStats],
+          userGuessState: [userGuess, setUserGuess],
+        }}
+      >
+        <button
+          onClick={() => {
+            fetchPokemon(setPokemon, setPokemonStats);
+          }}
+        >
+          Start
+        </button>
+        <Hints />
+        <DisplayPokemon />
+        <UserGuess />
+      </PokemonProvider>
+    </div>
   );
 }
