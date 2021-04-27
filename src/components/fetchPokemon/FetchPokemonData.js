@@ -1,6 +1,12 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-const fetchPokemon = (setPokemon, setPokemonStats) => {
+const fetchPokemon = (
+  pokemon,
+  setPokemon,
+  setPokemonStats,
+  setAllPokemon,
+  allPokemon
+) => {
   const randomNumber = Math.floor(Math.random() * 890);
   const url = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
 
