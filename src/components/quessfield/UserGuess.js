@@ -1,32 +1,80 @@
 import React, { useState, useContext } from "react";
 import PokemonContext from "../context/pokemonContext";
+import fetchPokemon from "../fetchPokemon/FetchPokemonData";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Grid from "@material-ui/core/Grid";
 export default function UserGuess() {
-  const { pokemonState, pokemonStatsState, userGuessState } = useContext(
-    PokemonContext
-  );
+  const {
+    pokemonState,
+    pokemonStatsState,
+    allPokemonState,
+    userGuessState,
+    userStatsState,
+    urlState,
+  } = useContext(PokemonContext);
   const [pokemon, setPokemon] = pokemonState;
   const [pokemonStats, setPokemonStats] = pokemonStatsState;
+  const [allPokemon, setAllPokemon] = allPokemonState;
   const [userGuess, setUserGuess] = userGuessState;
-  const [correct, setCorrect] = useState(false);
+  const [userStats, setUserStats] = userStatsState;
+  const [url, setUrl] = urlState;
+  const { guesses, wrong, correct } = userStats;
+  const [correctGuess, setCorrectGuess] = useState(false);
   const handleUserGuess = (event) => {
     setUserGuess(event.target.value);
   };
   const handleCheckAnswer = () => {
-    console.log(userGuess, pokemon.name);
     if (userGuess === pokemon.name) {
-      setCorrect(true);
+      setCorrectGuess(true);
+      setUserStats({
+        ...userStats,
+        correct: correct + 1,
+        guesses: guesses + 1,
+      });
+      let pokedata = { ...pokemon, answer: "correct" };
+      console.log(pokemon);
+      setAllPokemon([pokedata, ...allPokemon]);
+      fetchPokemon(
+        pokemon,
+        setPokemon,
+        setPokemonStats,
+        setAllPokemon,
+        allPokemon,
+        url
+      );
     } else {
-      setCorrect(false);
+      setCorrectGuess(false);
+      setUserStats({ ...userStats, wrong: wrong + 1, guesses: guesses + 1 });
     }
   };
   return (
     <div>
+      <Grid container justify="center" alignItems="center" spacing={2}>
+        <Grid item>
+          <TextField
+            label="Who's that pokemon?"
+            variant="outlined"
+            onChange={handleUserGuess}
+            type="text"
+          />
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              handleCheckAnswer();
+            }}
+          >
+            Submit
+          </Button>
+        </Grid>
+      </Grid>
       <div>
-        <input onChange={handleUserGuess} type="text" />
-        <button onClick={handleCheckAnswer}>Submit</button>
-      </div>
-      <div>
-        <div>{correct ? <div>Correct!</div> : ""}</div>
+        <div>{correctGuess ? <div>Correct!</div> : ""}</div>
       </div>
     </div>
   );

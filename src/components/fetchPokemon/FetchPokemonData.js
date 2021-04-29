@@ -5,16 +5,21 @@ const fetchPokemon = (
   setPokemon,
   setPokemonStats,
   setAllPokemon,
-  allPokemon
+  allPokemon,
+  url
 ) => {
-  const randomNumber = Math.floor(Math.random() * 890);
-  const url = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
-
-  axios.get(url).then((result) => {
-    console.log(result.data);
+  const randomNumber = Math.floor(
+    Math.random() * (url.secondNumber - url.firstNumber + 1) + url.firstNumber
+  );
+  const fullUrl = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
+  let correct = "correct";
+  axios.get(fullUrl).then((result) => {
     const pokemonData = result.data;
     if (pokemonData.types.length === 2) {
-      setPokemon({ ...pokemonData, type2: pokemonData.types[1].type.name });
+      setPokemon({
+        ...pokemonData,
+        type2: pokemonData.types[1].type.name,
+      });
     } else {
       setPokemon({ ...pokemonData, type2: "Only 1 type" });
     }
