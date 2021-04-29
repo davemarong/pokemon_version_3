@@ -81,9 +81,9 @@ export default function UserGuess() {
           </Button>
         </Grid>
       </Grid>
-      <div>
-        <div>{correctGuess ? <div>Correct!</div> : ""}</div>
-      </div>
+      {/* <div>
+        <div>{correctGuess ? <div>Correct!</div> : <br />}</div>
+      </div> */}
     </div>
   );
 }

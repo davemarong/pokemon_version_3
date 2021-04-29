@@ -31,11 +31,15 @@ export default function AllPokemon() {
         control={<Switch checked={checked} onChange={handleChange} />}
         label="Show previous pokemon"
       />
-      <Grid container justify="center" component="div" spacing={3}>
+      <Grid container justify="center" component="div">
         {allPokemon.map((pokemon, index) => (
           <Grid key={index} item>
             <Collapse in={checked}>
-              <Paper className={pokemon.answer} elevation={3}>
+              <Paper
+                className={pokemon.answer}
+                elevation={3}
+                style={{ margin: 10 }}
+              >
                 <Typography align="center">{pokemon.name}</Typography>
                 <CardMedia
                   style={{ height: 100, width: 100, margin: "auto" }}
