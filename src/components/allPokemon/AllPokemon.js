@@ -6,7 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Zoom from "@material-ui/core/Grow";
+import Collapse from "@material-ui/core/Collapse";
 import Switch from "@material-ui/core/Switch";
 import zIndex from "@material-ui/core/styles/zIndex";
 import Paper from "@material-ui/core/Paper";
@@ -14,7 +14,7 @@ import Paper from "@material-ui/core/Paper";
 export default function AllPokemon() {
   const { allPokemonState } = useContext(PokemonContext);
   const [allPokemon, setAllPokemon] = allPokemonState;
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(true);
   const handleChange = () => {
     setChecked((prev) => !prev);
   };
@@ -34,7 +34,7 @@ export default function AllPokemon() {
       <Grid container justify="center" component="div" spacing={3}>
         {allPokemon.map((pokemon, index) => (
           <Grid key={index} item>
-            <Zoom in={checked}>
+            <Collapse in={checked}>
               <Paper className={pokemon.answer} elevation={3}>
                 <Typography align="center">{pokemon.name}</Typography>
                 <CardMedia
@@ -42,7 +42,7 @@ export default function AllPokemon() {
                   image={pokemon.sprites.front_default}
                 />
               </Paper>
-            </Zoom>
+            </Collapse>
           </Grid>
         ))}
       </Grid>

@@ -21,12 +21,15 @@ export default function SelectGeneration() {
   const { urlState } = useContext(PokemonContext);
   const [url, setUrl] = urlState;
   const [checked, setChecked] = useState();
-
+  const [currentGen, setCurrentGen] = useState("Generation 1 is active");
   const handleChange = () => {
     setChecked((prev) => !prev);
   };
   const handleWhichGeneration = (minNumber, maxNumber) => {
     setUrl({ firstNumber: minNumber, secondNumber: maxNumber });
+  };
+  const handleSwitchGen = (generation) => {
+    setCurrentGen(`${generation} is active`);
   };
 
   const classes = useStyles();
@@ -52,6 +55,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(1, 151);
+                handleSwitchGen("Generation 1");
               }}
               variant="contained"
               size="small"
@@ -64,6 +68,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(152, 251);
+                handleSwitchGen("Generation 2");
               }}
               variant="contained"
               size="small"
@@ -76,6 +81,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(252, 386);
+                handleSwitchGen("Generation 3");
               }}
               variant="contained"
               size="small"
@@ -88,6 +94,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(387, 493);
+                handleSwitchGen("Generation 4");
               }}
               variant="contained"
               size="small"
@@ -100,6 +107,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(494, 649);
+                handleSwitchGen("Generation 5");
               }}
               variant="contained"
               size="small"
@@ -112,6 +120,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(650, 721);
+                handleSwitchGen("Generation 6");
               }}
               variant="contained"
               size="small"
@@ -124,6 +133,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(722, 809);
+                handleSwitchGen("Generation 7");
               }}
               variant="contained"
               size="small"
@@ -136,6 +146,7 @@ export default function SelectGeneration() {
             <Button
               onClick={() => {
                 handleWhichGeneration(810, 898);
+                handleSwitchGen("Generation 8");
               }}
               variant="contained"
               size="small"
@@ -143,6 +154,9 @@ export default function SelectGeneration() {
             >
               Gen 8
             </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography align="center">{currentGen}</Typography>
           </Grid>
         </Grid>
       </Collapse>

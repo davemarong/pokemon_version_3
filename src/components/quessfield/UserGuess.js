@@ -6,6 +6,8 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+
 export default function UserGuess() {
   const {
     pokemonState,

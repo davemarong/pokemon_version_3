@@ -10,7 +10,7 @@ export default function BarChart() {
   const [userStats, setUserStats] = userStatsState;
   const [allPokemon, setAllPokemon] = allPokemonState;
   const { guesses, totalHints, imageHints, correct, wrong } = userStats;
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = () => {
     setChecked((prev) => !prev);

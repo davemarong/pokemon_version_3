@@ -65,7 +65,6 @@ export default function App() {
         }}
       >
         <Container maxWidth="sm">
-          <SelectGeneration />
           <Grid container justify="center" spacing={4}>
             {startGame ? (
               <Grid item>
@@ -116,8 +115,9 @@ export default function App() {
           <Hints />
           <DisplayPokemon />
           <UserGuess />
-          <BarChart />
           <AllPokemon />
+          <BarChart />
+          <SelectGeneration />
         </Container>
       </PokemonProvider>
     </div>
