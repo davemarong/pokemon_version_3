@@ -1,0 +1,9 @@
+.correct {
+  background-color: rgb(104 227 104) !important;
+}
+.wrong {
+  background-color: rgb(255 89 89) !important;
+}
+* {
+  font-family: "Varela Round", "Arial", "Sans-Serif" !important;
+}
