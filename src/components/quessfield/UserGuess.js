@@ -54,7 +54,13 @@ export default function UserGuess() {
   };
   return (
     <div>
-      <Grid container justify="center" alignItems="center" spacing={2}>
+      <Grid
+        style={{ marginBottom: 50 }}
+        container
+        justify="center"
+        alignItems="center"
+        spacing={2}
+      >
         <Grid item>
           <TextField
             label="Who's that pokemon?"
