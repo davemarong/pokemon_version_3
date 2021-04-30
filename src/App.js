@@ -1,4 +1,5 @@
 import "./css/app.css";
+
 import React, { useState } from "react";
 import Hints from "./components/hints/Hints";
 import Button from "@material-ui/core/Button";
@@ -10,9 +11,11 @@ import UserGuess from "./components/quessfield/UserGuess";
 import AllPokemon from "./components/allPokemon/AllPokemon";
 import SelectGeneration from "./components/selectGeneration/SelectGeneration";
 import Container from "@material-ui/core/Container";
-import Chart from "./components/chart/Chart";
 import BarChart from "./components/chart/BarChart";
+import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 import { motion, useCycle } from "framer-motion";
+import { SnackbarProvider } from "notistack";
+import Slide from "@material-ui/core/Slide";
 
 export default function App() {
   const [animation, cycleAnimation] = useCycle("animationOne", "animationTwo");
@@ -55,6 +58,7 @@ export default function App() {
       front_default: "",
     },
   });
+
   return (
     <div>
       <PokemonProvider
@@ -68,7 +72,15 @@ export default function App() {
           animationState: [animation, cycleAnimation],
         }}
       >
-        <Container maxWidth="sm">
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          TransitionComponent={Slide}
+        >
+          {/* <Container maxWidth="sm"> */}
           <Grid container justify="center" spacing={4}>
             {startGame ? (
               <Grid item>
@@ -78,6 +90,7 @@ export default function App() {
                   size="large"
                   variant="contained"
                   color="secondary"
+                  endIcon={<ArrowForwardRoundedIcon />}
                   onClick={() => {
                     let pokedata = { ...pokemon, answer: "wrong" };
                     fetchPokemon(
@@ -121,12 +134,56 @@ export default function App() {
           </Grid>
 
           <Hints />
-          <DisplayPokemon />
-          <UserGuess />
-          <AllPokemon />
-          <BarChart />
-          <SelectGeneration />
-        </Container>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={12} md={6}>
+              <DisplayPokemon />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <UserGuess />
+            </Grid>
+
+            <Grid
+              container
+              justify="center"
+              alignContent="flex-start"
+              alignItems="flex-start"
+              item
+              xs={12}
+              md={6}
+            >
+              <AllPokemon />
+            </Grid>
+            <Grid
+              container
+              justify="center"
+              alignContent="flex-start"
+              alignItems="flex-start"
+              item
+              xs={12}
+              md={6}
+            >
+              <BarChart />
+            </Grid>
+            <Grid
+              container
+              justify="center"
+              alignContent="center"
+              alignItems="center"
+              item
+              xs={12}
+              md={12}
+            >
+              <SelectGeneration />
+            </Grid>
+          </Grid>
+          {/* </Container> */}
+        </SnackbarProvider>
       </PokemonProvider>
     </div>
   );

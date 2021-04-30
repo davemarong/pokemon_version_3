@@ -7,7 +7,9 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import { motion } from "framer-motion";
+import Snackbar from "@material-ui/core/Snackbar";
+import { useSnackbar } from "notistack";
+import { motion, useCycle } from "framer-motion";
 export default function UserGuess() {
   const {
     pokemonState,
@@ -28,13 +30,21 @@ export default function UserGuess() {
 
   const { guesses, wrong, correct } = userStats;
   const [correctGuess, setCorrectGuess] = useState(false);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const handleUserGuess = (event) => {
     setUserGuess(event.target.value);
+  };
+  const handleClick = () => {
+    enqueueSnackbar("I love hooks");
   };
   const handleCheckAnswer = () => {
     if (userGuess) {
       if (userGuess.toLowerCase() === pokemon.name) {
         setCorrectGuess(true);
+        enqueueSnackbar("Thats correct!", {
+          variant: "success",
+          autoHideDuration: 3000,
+        });
         setUserStats({
           ...userStats,
           correct: correct + 1,
@@ -48,11 +58,12 @@ export default function UserGuess() {
           setPokemonStats,
           setAllPokemon,
           allPokemon,
-          url
+          url,
+          cycleAnimation
         );
-        cycleAnimation();
         setUserGuess("");
       } else {
+        enqueueSnackbar("Wrong", { variant: "error", autoHideDuration: 1000 });
         setCorrectGuess(false);
         setUserStats({ ...userStats, wrong: wrong + 1, guesses: guesses + 1 });
       }

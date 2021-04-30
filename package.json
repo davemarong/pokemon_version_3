@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "chart.js": "^3.2.0",
     "framer-motion": "^4.1.11",
+    "notistack": "^1.0.6",
     "react": "^17.0.1",
     "react-chartjs-2": "^3.0.3",
     "react-dom": "^17.0.1",

@@ -7,7 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
-import { motion } from "framer-motion";
+import { motion, useCycle } from "framer-motion";
+import { Container } from "@material-ui/core";
 
 export default function DisplayPokemon() {
   const {
@@ -43,7 +44,10 @@ export default function DisplayPokemon() {
     handlePokemonStatsTypes1,
     handlePokemonStatsTypes2,
   } = HandlePokemonStats();
-
+  const [idAnimation, cycleIdAnimation] = useCycle(
+    "hintAnimation1",
+    "hintAnimation2"
+  );
   const displayContainerVariants = {
     animationOne: {
       rotate: 360,
@@ -58,179 +62,182 @@ export default function DisplayPokemon() {
       },
     },
   };
+
   const capitalizeFirstLetter = (string) =>
     string.charAt(0).toUpperCase() + string.slice(1);
 
   return (
     <>
-      <motion.div variants={displayContainerVariants} animate={animation}>
-        <Paper style={{ height: 230, marginBottom: 50 }}>
-          <Grid
-            container
-            direction="row"
-            style={{ paddingTop: 55, marginTop: 70, marginBottom: 70 }}
-          >
-            <Grid item xs={9} container direction="row" spacing={6}>
-              <Grid container>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={4}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      handlePokemonStatsId();
-                      setUserStats({
-                        ...userStats,
-                        totalHints: totalHints + 1,
-                      });
-                    }}
-                  >
-                    Id
-                  </Button>
+      <Container maxWidth="sm">
+        <motion.div variants={displayContainerVariants} animate={animation}>
+          <Paper style={{ height: 230, marginBottom: 50 }}>
+            <Grid
+              container
+              direction="row"
+              style={{ paddingTop: 55, marginTop: 70, marginBottom: 70 }}
+            >
+              <Grid item xs={9} container direction="row" spacing={6}>
+                <Grid container>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        handlePokemonStatsId();
+                        setUserStats({
+                          ...userStats,
+                          totalHints: totalHints + 1,
+                        });
+                      }}
+                    >
+                      Id
+                    </Button>
+                  </Grid>
+                  <Grid container justify="flex-start" item xs>
+                    <div>
+                      {idPS ? (
+                        <Typography align="center">{id}</Typography>
+                      ) : (
+                        <Typography align="center">...</Typography>
+                      )}
+                    </div>
+                  </Grid>
                 </Grid>
-                <Grid container justify="flex-start" item xs>
-                  <div>
-                    {idPS ? (
-                      <Typography align="center">{id}</Typography>
-                    ) : (
-                      <Typography align="center">...</Typography>
-                    )}
-                  </div>
+                <Grid container>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setUserStats({
+                          ...userStats,
+                          totalHints: totalHints + 1,
+                        });
+                        handlePokemonStatsHeight();
+                      }}
+                    >
+                      Height
+                    </Button>
+                  </Grid>
+                  <Grid container justify="flex-start" item xs>
+                    <div>
+                      {heightPS ? (
+                        <Typography align="center">{height}</Typography>
+                      ) : (
+                        <Typography align="center">...</Typography>
+                      )}
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setUserStats({
+                          ...userStats,
+                          totalHints: totalHints + 1,
+                        });
+                        handlePokemonStatsTypes1();
+                      }}
+                    >
+                      Type 1
+                    </Button>
+                  </Grid>
+                  <Grid container justify="flex-start" item xs>
+                    <div>
+                      {type1PS ? (
+                        <Typography align="center">
+                          {capitalizeFirstLetter(type1)}
+                        </Typography>
+                      ) : (
+                        <Typography align="center">...</Typography>
+                      )}
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={4}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setUserStats({
+                          ...userStats,
+                          totalHints: totalHints + 1,
+                        });
+                        handlePokemonStatsTypes2();
+                      }}
+                    >
+                      Type 2
+                    </Button>
+                  </Grid>
+                  <Grid container justify="flex-start" item xs>
+                    <div>
+                      {type2PS ? (
+                        <Typography align="center">
+                          {capitalizeFirstLetter(type2)}
+                        </Typography>
+                      ) : (
+                        <Typography align="center">...</Typography>
+                      )}
+                    </div>
+                  </Grid>
                 </Grid>
               </Grid>
-              <Grid container>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={4}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      setUserStats({
-                        ...userStats,
-                        totalHints: totalHints + 1,
-                      });
-                      handlePokemonStatsHeight();
-                    }}
-                  >
-                    Height
-                  </Button>
-                </Grid>
-                <Grid container justify="flex-start" item xs>
-                  <div>
-                    {heightPS ? (
-                      <Typography align="center">{height}</Typography>
-                    ) : (
-                      <Typography align="center">...</Typography>
-                    )}
-                  </div>
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={4}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      setUserStats({
-                        ...userStats,
-                        totalHints: totalHints + 1,
-                      });
-                      handlePokemonStatsTypes1();
-                    }}
-                  >
-                    Type 1
-                  </Button>
-                </Grid>
-                <Grid container justify="flex-start" item xs>
-                  <div>
-                    {type1PS ? (
-                      <Typography align="center">
-                        {capitalizeFirstLetter(type1)}
-                      </Typography>
-                    ) : (
-                      <Typography align="center">...</Typography>
-                    )}
-                  </div>
-                </Grid>
-              </Grid>
-              <Grid container>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={4}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      setUserStats({
-                        ...userStats,
-                        totalHints: totalHints + 1,
-                      });
-                      handlePokemonStatsTypes2();
-                    }}
-                  >
-                    Type 2
-                  </Button>
-                </Grid>
-                <Grid container justify="flex-start" item xs>
-                  <div>
-                    {type2PS ? (
-                      <Typography align="center">
-                        {capitalizeFirstLetter(type2)}
-                      </Typography>
-                    ) : (
-                      <Typography align="center">...</Typography>
-                    )}
-                  </div>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={3} container direction="row">
-              <Grid
-                container
-                justify="flex-start"
-                item
-                xs={12}
-                direction="column"
-              >
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    setUserStats({
-                      ...userStats,
-                      imageHints: imageHints + 1,
-                      totalHints: totalHints + 1,
-                    });
-                    handlePokemonStatsImg();
-                  }}
+              <Grid item xs={3} container direction="row">
+                <Grid
+                  container
+                  justify="flex-start"
+                  item
+                  xs={12}
+                  direction="column"
                 >
-                  Img
-                </Button>
-              </Grid>
-              <Grid container justify="center" item xs={12}>
-                {imgPS ? (
-                  <CardMedia
-                    style={{ height: 100, width: 100, margin: "auto" }}
-                    image={img}
-                  />
-                ) : (
-                  <Typography
-                    align="center"
-                    style={{ height: 100, width: 100, margin: "auto" }}
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      setUserStats({
+                        ...userStats,
+                        imageHints: imageHints + 1,
+                        totalHints: totalHints + 1,
+                      });
+                      handlePokemonStatsImg();
+                    }}
                   >
-                    ...
-                  </Typography>
-                )}
+                    Img
+                  </Button>
+                </Grid>
+                <Grid container justify="center" item xs={12}>
+                  {imgPS ? (
+                    <CardMedia
+                      style={{ height: 100, width: 100, margin: "auto" }}
+                      image={img}
+                    />
+                  ) : (
+                    <Typography
+                      align="center"
+                      style={{ height: 100, width: 100, margin: "auto" }}
+                    >
+                      ...
+                    </Typography>
+                  )}
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-      </motion.div>
+          </Paper>
+        </motion.div>
+      </Container>
     </>
   );
 }
