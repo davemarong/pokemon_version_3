@@ -10,6 +10,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Switch from "@material-ui/core/Switch";
 import zIndex from "@material-ui/core/styles/zIndex";
 import Paper from "@material-ui/core/Paper";
+import { motion } from "framer-motion";
 
 export default function AllPokemon() {
   const { allPokemonState } = useContext(PokemonContext);
@@ -19,12 +20,9 @@ export default function AllPokemon() {
     setChecked((prev) => !prev);
   };
 
-  const correct = {
-    background: "green",
-  };
-  const wrong = {
-    background: "blue",
-  };
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return (
     <div>
       <FormControlLabel
@@ -40,7 +38,9 @@ export default function AllPokemon() {
                 elevation={3}
                 style={{ margin: 10 }}
               >
-                <Typography align="center">{pokemon.name}</Typography>
+                <Typography align="center">
+                  {capitalizeFirstLetter(pokemon.name)}
+                </Typography>
                 <CardMedia
                   style={{ height: 100, width: 100, margin: "auto" }}
                   image={pokemon.sprites.front_default}

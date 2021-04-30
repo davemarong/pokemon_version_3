@@ -12,7 +12,10 @@ import SelectGeneration from "./components/selectGeneration/SelectGeneration";
 import Container from "@material-ui/core/Container";
 import Chart from "./components/chart/Chart";
 import BarChart from "./components/chart/BarChart";
+import { motion, useCycle } from "framer-motion";
+
 export default function App() {
+  const [animation, cycleAnimation] = useCycle("animationOne", "animationTwo");
   const [url, setUrl] = useState({ firstNumber: 1, secondNumber: 151 });
   const [userGuess, setUserGuess] = useState();
   const [userStats, setUserStats] = useState({
@@ -62,6 +65,7 @@ export default function App() {
           allPokemonState: [allPokemon, setAllPokemon],
           userStatsState: [userStats, setUserStats],
           urlState: [url, setUrl],
+          animationState: [animation, cycleAnimation],
         }}
       >
         <Container maxWidth="sm">
@@ -69,20 +73,23 @@ export default function App() {
             {startGame ? (
               <Grid item>
                 <Button
+                  component={motion.div}
+                  whileTap={{ scale: 1.2 }}
                   size="large"
                   variant="contained"
                   color="secondary"
                   onClick={() => {
                     let pokedata = { ...pokemon, answer: "wrong" };
-                    setAllPokemon([pokedata, ...allPokemon]);
                     fetchPokemon(
                       pokemon,
                       setPokemon,
                       setPokemonStats,
                       setAllPokemon,
                       allPokemon,
-                      url
+                      url,
+                      cycleAnimation
                     );
+                    setAllPokemon([pokedata, ...allPokemon]);
                   }}
                 >
                   Next pokemon
@@ -102,7 +109,8 @@ export default function App() {
                       setPokemonStats,
                       setAllPokemon,
                       allPokemon,
-                      url
+                      url,
+                      cycleAnimation
                     );
                   }}
                 >

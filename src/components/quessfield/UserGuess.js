@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import { motion } from "framer-motion";
 export default function UserGuess() {
   const {
     pokemonState,
@@ -16,6 +16,7 @@ export default function UserGuess() {
     userGuessState,
     userStatsState,
     urlState,
+    animationState,
   } = useContext(PokemonContext);
   const [pokemon, setPokemon] = pokemonState;
   const [pokemonStats, setPokemonStats] = pokemonStatsState;
@@ -23,33 +24,38 @@ export default function UserGuess() {
   const [userGuess, setUserGuess] = userGuessState;
   const [userStats, setUserStats] = userStatsState;
   const [url, setUrl] = urlState;
+  const [animation, cycleAnimation] = animationState;
+
   const { guesses, wrong, correct } = userStats;
   const [correctGuess, setCorrectGuess] = useState(false);
   const handleUserGuess = (event) => {
     setUserGuess(event.target.value);
   };
   const handleCheckAnswer = () => {
-    if (userGuess === pokemon.name) {
-      setCorrectGuess(true);
-      setUserStats({
-        ...userStats,
-        correct: correct + 1,
-        guesses: guesses + 1,
-      });
-      let pokedata = { ...pokemon, answer: "correct" };
-      console.log(pokemon);
-      setAllPokemon([pokedata, ...allPokemon]);
-      fetchPokemon(
-        pokemon,
-        setPokemon,
-        setPokemonStats,
-        setAllPokemon,
-        allPokemon,
-        url
-      );
-    } else {
-      setCorrectGuess(false);
-      setUserStats({ ...userStats, wrong: wrong + 1, guesses: guesses + 1 });
+    if (userGuess) {
+      if (userGuess.toLowerCase() === pokemon.name) {
+        setCorrectGuess(true);
+        setUserStats({
+          ...userStats,
+          correct: correct + 1,
+          guesses: guesses + 1,
+        });
+        let pokedata = { ...pokemon, answer: "correct" };
+        setAllPokemon([pokedata, ...allPokemon]);
+        fetchPokemon(
+          pokemon,
+          setPokemon,
+          setPokemonStats,
+          setAllPokemon,
+          allPokemon,
+          url
+        );
+        cycleAnimation();
+        setUserGuess("");
+      } else {
+        setCorrectGuess(false);
+        setUserStats({ ...userStats, wrong: wrong + 1, guesses: guesses + 1 });
+      }
     }
   };
   return (
@@ -67,6 +73,7 @@ export default function UserGuess() {
             variant="outlined"
             onChange={handleUserGuess}
             type="text"
+            value={userGuess}
           />
         </Grid>
         <Grid item>

@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+
 const fetchPokemon = (
   pokemon,
   setPokemon,
   setPokemonStats,
   setAllPokemon,
   allPokemon,
-  url
+  url,
+  cycleAnimation
 ) => {
   const randomNumber = Math.floor(
     Math.random() * (url.secondNumber - url.firstNumber + 1) + url.firstNumber
@@ -31,6 +34,7 @@ const fetchPokemon = (
       type1PS: false,
       type2PS: false,
     });
+    cycleAnimation();
   });
 };
 export default fetchPokemon;
