@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import { useSnackbar } from "notistack";
 import { motion, useCycle } from "framer-motion";
+import { Card, Container } from "@material-ui/core";
 export default function UserGuess() {
   const {
     pokemonState,
@@ -71,37 +72,43 @@ export default function UserGuess() {
   };
   return (
     <div>
-      <Grid
-        style={{ marginBottom: 50 }}
-        container
-        justify="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item>
-          <TextField
-            label="Who's that pokemon?"
-            variant="outlined"
-            onChange={handleUserGuess}
-            type="text"
-            value={userGuess}
-          />
-        </Grid>
-        <Grid item>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              handleCheckAnswer();
-            }}
+      <Container maxWidth="sm">
+        <Card>
+          <Grid
+            className="container"
+            style={{ height: 230 }}
+            container
+            justify="center"
+            alignItems="center"
+            spacing={2}
           >
-            Submit
-          </Button>
-        </Grid>
-      </Grid>
-      {/* <div>
+            <Grid item>
+              <TextField
+                label="Who's that pokemon?"
+                variant="outlined"
+                onChange={handleUserGuess}
+                type="text"
+                value={userGuess}
+              />
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                className="main_button"
+                color="secondary"
+                onClick={() => {
+                  handleCheckAnswer();
+                }}
+              >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+          {/* <div>
         <div>{correctGuess ? <div>Correct!</div> : <br />}</div>
       </div> */}
+        </Card>
+      </Container>
     </div>
   );
 }

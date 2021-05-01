@@ -60,7 +60,7 @@ export default function App() {
   });
 
   return (
-    <div>
+    <div className="background">
       <PokemonProvider
         value={{
           pokemonState: [pokemon, setPokemon],
@@ -85,6 +85,7 @@ export default function App() {
             {startGame ? (
               <Grid item>
                 <Button
+                  className="main_button"
                   component={motion.div}
                   whileTap={{ scale: 1.2 }}
                   size="large"
@@ -111,6 +112,7 @@ export default function App() {
             ) : (
               <Grid item>
                 <Button
+                  className="main_button"
                   size="large"
                   variant="contained"
                   color="secondary"
@@ -140,46 +142,73 @@ export default function App() {
             justify="center"
             alignContent="center"
             alignItems="center"
+            spacing={4}
           >
-            <Grid item xs={12} md={6}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              style={{
+                height: 300,
+              }}
+            >
               <DisplayPokemon />
             </Grid>
             <Grid item xs={12} md={6}>
               <UserGuess />
             </Grid>
-
             <Grid
               container
-              justify="center"
+              direction="row"
+              justify="flex-start"
               alignContent="flex-start"
               alignItems="flex-start"
-              item
-              xs={12}
-              md={6}
             >
-              <AllPokemon />
-            </Grid>
-            <Grid
-              container
-              justify="center"
-              alignContent="flex-start"
-              alignItems="flex-start"
-              item
-              xs={12}
-              md={6}
-            >
-              <BarChart />
-            </Grid>
-            <Grid
-              container
-              justify="center"
-              alignContent="center"
-              alignItems="center"
-              item
-              xs={12}
-              md={12}
-            >
-              <SelectGeneration />
+              <Grid
+                container
+                justify="center"
+                item
+                xs={12}
+                md={4}
+                style={{
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                  marginTop: 20,
+                  marginBottom: 20,
+                }}
+              >
+                <AllPokemon />
+              </Grid>
+              <Grid
+                container
+                justify="center"
+                item
+                xs={12}
+                md={4}
+                style={{
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                  marginTop: 20,
+                  marginBottom: 20,
+                }}
+              >
+                <BarChart />
+              </Grid>
+              <Grid
+                container
+                justify="center"
+                item
+                xs={12}
+                md={4}
+                style={{
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                  marginTop: 20,
+                  marginBottom: 20,
+                }}
+              >
+                <SelectGeneration />
+              </Grid>
             </Grid>
           </Grid>
           {/* </Container> */}

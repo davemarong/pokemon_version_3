@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import PokemonContext from "../context/pokemonContext";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Collapse from "@material-ui/core/Collapse";
-
+import Card from "@material-ui/core/Card";
+import Container from "@material-ui/core/Container";
 import { Bar } from "react-chartjs-2";
 export default function BarChart() {
   const { userStatsState, allPokemonState } = useContext(PokemonContext);
   const [userStats, setUserStats] = userStatsState;
   const [allPokemon, setAllPokemon] = allPokemonState;
   const { guesses, totalHints, imageHints, correct, wrong } = userStats;
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
@@ -57,14 +58,18 @@ export default function BarChart() {
     ],
   };
   return (
-    <div>
-      <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
-        label="Show statistics chart"
-      />
-      <Collapse in={checked}>
-        <Bar data={data} />
-      </Collapse>
-    </div>
+    <Container maxWidth="sm">
+      <Card>
+        <div style={{ textAlign: "center" }} className="container">
+          <FormControlLabel
+            control={<Switch checked={checked} onChange={handleChange} />}
+            label="Show statistics chart"
+          />
+          <Collapse in={checked}>
+            <Bar data={data} />
+          </Collapse>
+        </div>
+      </Card>
+    </Container>
   );
 }

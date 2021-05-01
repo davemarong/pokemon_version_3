@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
 import { motion, useCycle } from "framer-motion";
-import { Container } from "@material-ui/core";
+import { Card, Container } from "@material-ui/core";
 
 export default function DisplayPokemon() {
   const {
@@ -70,11 +70,17 @@ export default function DisplayPokemon() {
     <>
       <Container maxWidth="sm">
         <motion.div variants={displayContainerVariants} animate={animation}>
-          <Paper style={{ height: 230, marginBottom: 50 }}>
+          <Paper style={{}}>
             <Grid
+              className="container"
               container
               direction="row"
-              style={{ paddingTop: 55, marginTop: 70, marginBottom: 70 }}
+              style={{
+                paddingTop: 40,
+                paddingBottom: 40,
+                marginTop: 30,
+                marginBottom: 30,
+              }}
             >
               <Grid item xs={9} container direction="row" spacing={6}>
                 <Grid container>
@@ -84,6 +90,7 @@ export default function DisplayPokemon() {
                       size="small"
                       variant="contained"
                       color="primary"
+                      className="hint_button"
                       onClick={() => {
                         handlePokemonStatsId();
                         setUserStats({
@@ -109,6 +116,7 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      className="hint_button"
                       size="small"
                       variant="contained"
                       color="primary"
@@ -137,6 +145,7 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      className="hint_button"
                       size="small"
                       variant="contained"
                       color="primary"
@@ -167,6 +176,7 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      className="hint_button"
                       size="small"
                       variant="contained"
                       color="primary"
@@ -203,6 +213,7 @@ export default function DisplayPokemon() {
                   direction="column"
                 >
                   <Button
+                    className="hint_button"
                     size="small"
                     variant="contained"
                     color="primary"
