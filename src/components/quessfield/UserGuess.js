@@ -8,6 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
+import Typography from "@material-ui/core/Typography";
 import { useSnackbar } from "notistack";
 import { motion, useCycle } from "framer-motion";
 import { Card, Container } from "@material-ui/core";
@@ -73,11 +74,22 @@ export default function UserGuess() {
   return (
     <div>
       <Container maxWidth="sm">
-        <Card>
+        <Typography align="center" variant="h5">
+          Step 2: Guess which pokemon
+        </Typography>
+
+        <Paper>
           <Grid
             className="container"
-            style={{ height: 230 }}
+            style={{
+              height: 210,
+              paddingTop: 40,
+              paddingBottom: 40,
+              marginTop: 30,
+              marginBottom: 30,
+            }}
             container
+            direction="row"
             justify="center"
             alignItems="center"
             spacing={2}
@@ -107,7 +119,7 @@ export default function UserGuess() {
           {/* <div>
         <div>{correctGuess ? <div>Correct!</div> : <br />}</div>
       </div> */}
-        </Card>
+        </Paper>
       </Container>
     </div>
   );

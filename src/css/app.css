@@ -22,9 +22,14 @@
 .hint_button {
   background: linear-gradient(to right, #36d1dc, #5b86e5);
 }
+.hint_button:hover {
+  background: linear-gradient(to right, #2db2bb, #4d72c2);
+}
+
 .background {
   background: #f8f9fa;
   padding-top: 50px;
+  padding-bottom: 250px;
 }
 
 .container {
@@ -32,4 +37,15 @@
 
   border-radius: 4px;
   text-align: center;
+}
+.scrollAllPokemon {
+  max-height: 470px;
+  overflow-y: scroll;
+}
+.imgHint {
+  position: relative;
+  bottom: 24px;
+}
+.marginButton {
+  margin: 40px !important;
 }

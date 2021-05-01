@@ -1,6 +1,6 @@
 import "./css/app.css";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hints from "./components/hints/Hints";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -58,7 +58,18 @@ export default function App() {
       front_default: "",
     },
   });
-
+  useEffect(() => {
+    setStartGame(true);
+    fetchPokemon(
+      pokemon,
+      setPokemon,
+      setPokemonStats,
+      setAllPokemon,
+      allPokemon,
+      url,
+      cycleAnimation
+    );
+  }, []);
   return (
     <div className="background">
       <PokemonProvider
@@ -80,59 +91,33 @@ export default function App() {
           }}
           TransitionComponent={Slide}
         >
-          {/* <Container maxWidth="sm"> */}
-          <Grid container justify="center" spacing={4}>
-            {startGame ? (
-              <Grid item>
-                <Button
-                  className="main_button"
-                  component={motion.div}
-                  whileTap={{ scale: 1.2 }}
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-                  endIcon={<ArrowForwardRoundedIcon />}
-                  onClick={() => {
-                    let pokedata = { ...pokemon, answer: "wrong" };
-                    fetchPokemon(
-                      pokemon,
-                      setPokemon,
-                      setPokemonStats,
-                      setAllPokemon,
-                      allPokemon,
-                      url,
-                      cycleAnimation
-                    );
-                    setAllPokemon([pokedata, ...allPokemon]);
-                  }}
-                >
-                  Next pokemon
-                </Button>
-              </Grid>
-            ) : (
-              <Grid item>
-                <Button
-                  className="main_button"
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => {
-                    setStartGame(true);
-                    fetchPokemon(
-                      pokemon,
-                      setPokemon,
-                      setPokemonStats,
-                      setAllPokemon,
-                      allPokemon,
-                      url,
-                      cycleAnimation
-                    );
-                  }}
-                >
-                  Start
-                </Button>
-              </Grid>
-            )}
+          <Grid container justify="center" spacing={0}>
+            <Grid item>
+              <Button
+                className="main_button marginButton"
+                component={motion.div}
+                whileTap={{ scale: 1.2 }}
+                size="large"
+                variant="contained"
+                color="secondary"
+                endIcon={<ArrowForwardRoundedIcon />}
+                onClick={() => {
+                  let pokedata = { ...pokemon, answer: "wrong" };
+                  fetchPokemon(
+                    pokemon,
+                    setPokemon,
+                    setPokemonStats,
+                    setAllPokemon,
+                    allPokemon,
+                    url,
+                    cycleAnimation
+                  );
+                  setAllPokemon([pokedata, ...allPokemon]);
+                }}
+              >
+                Next pokemon
+              </Button>
+            </Grid>
           </Grid>
 
           <Hints />
@@ -142,16 +127,9 @@ export default function App() {
             justify="center"
             alignContent="center"
             alignItems="center"
-            spacing={4}
+            spacing={0}
           >
-            <Grid
-              item
-              xs={12}
-              md={6}
-              style={{
-                height: 300,
-              }}
-            >
+            <Grid item xs={12} md={6}>
               <DisplayPokemon />
             </Grid>
             <Grid item xs={12} md={6}>

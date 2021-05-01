@@ -28,7 +28,10 @@ export default function AllPokemon() {
   return (
     <Container maxWidth="sm">
       <Card>
-        <div style={{ textAlign: "center" }} className="container">
+        <div
+          style={{ textAlign: "center" }}
+          className="container scrollAllPokemon"
+        >
           <FormControlLabel
             control={<Switch checked={checked} onChange={handleChange} />}
             label="Show previous pokemon"

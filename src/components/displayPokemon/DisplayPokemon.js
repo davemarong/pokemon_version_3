@@ -69,8 +69,11 @@ export default function DisplayPokemon() {
   return (
     <>
       <Container maxWidth="sm">
+        <Typography align="center" variant="h5">
+          Step 1: Choose your hints
+        </Typography>
         <motion.div variants={displayContainerVariants} animate={animation}>
-          <Paper style={{}}>
+          <Paper>
             <Grid
               className="container"
               container
@@ -213,7 +216,7 @@ export default function DisplayPokemon() {
                   direction="column"
                 >
                   <Button
-                    className="hint_button"
+                    className="hint_button imgHint"
                     size="small"
                     variant="contained"
                     color="primary"
