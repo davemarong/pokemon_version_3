@@ -9,8 +9,12 @@
   margin: 0;
   padding: 0;
 }
+.margintop {
+  margin-top: 50px;
+}
 .main_button {
   background: linear-gradient(to right, #f12711, #f5af19);
+  margin-top: 50px;
 }
 .main_button:hover {
   background: linear-gradient(to right, #ce220f, #d09515);
@@ -18,15 +22,13 @@
 .hint_button {
   background: linear-gradient(to right, #36d1dc, #5b86e5);
 }
-/* .background {
-  background: linear-gradient(
-    to right,
-    #8e9eab,
-    #eef2f3
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.background {
+  background: #f8f9fa;
+  padding-top: 50px;
+}
 
 .container {
-  background: #fff77f59;
+  /* background: #fff77f59; */
 
   border-radius: 4px;
   text-align: center;
