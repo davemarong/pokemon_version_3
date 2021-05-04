@@ -16,6 +16,7 @@ import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 import { motion, useCycle } from "framer-motion";
 import { SnackbarProvider } from "notistack";
 import Slide from "@material-ui/core/Slide";
+import Test from "./Test";
 
 export default function App() {
   const [animation, cycleAnimation] = useCycle("animationOne", "animationTwo");
@@ -72,6 +73,7 @@ export default function App() {
   }, []);
   return (
     <div className="background">
+      <Test />
       <PokemonProvider
         value={{
           pokemonState: [pokemon, setPokemon],
