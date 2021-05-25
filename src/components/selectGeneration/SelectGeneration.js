@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PokemonContext from "../context/pokemonContext";
 import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
@@ -23,7 +23,7 @@ export default function SelectGeneration() {
   const { urlState } = useContext(PokemonContext);
   const [url, setUrl] = urlState;
   const [checked, setChecked] = useState(true);
-  const [currentGen, setCurrentGen] = useState(2);
+  const [currentGen, setCurrentGen] = useState("Generation 1 is active");
   const resetGen = [false, false, false, false, false, false, false, false];
   const [gen, setGen] = useState(resetGen);
   const handleChange = () => {
@@ -40,8 +40,12 @@ export default function SelectGeneration() {
     newGen.splice(x, 1, true);
     setGen(newGen);
   };
-  console.log(gen, "Gen");
+
   const classes = useStyles();
+
+  useEffect(() => {
+    handleChangeGen(0);
+  }, []);
   return (
     <Container maxWidth="sm">
       <Card>

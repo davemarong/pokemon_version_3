@@ -17,7 +17,10 @@ import { motion, useCycle } from "framer-motion";
 import { SnackbarProvider } from "notistack";
 import Slide from "@material-ui/core/Slide";
 import Test from "./Test";
-
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Zoom from "@material-ui/core/Zoom";
+import Introduction from "./components/introduction/Introduction";
 export default function App() {
   const [animation, cycleAnimation] = useCycle("animationOne", "animationTwo");
   const [url, setUrl] = useState({ firstNumber: 1, secondNumber: 151 });
@@ -59,6 +62,23 @@ export default function App() {
       front_default: "",
     },
   });
+  const [introductionModal, setIntroductionModal] = useState();
+
+  const openIntroductionModal = () => {
+    setIntroductionModal(true);
+  };
+  const closeIntroductionModal = () => {
+    setIntroductionModal(false);
+  };
+  useEffect(() => {
+    const watchedIntroductionVideo = localStorage.getItem(
+      "watchedIntroductionVideo"
+    );
+    if (!watchedIntroductionVideo) {
+      openIntroductionModal();
+    }
+    localStorage.setItem("watchedIntroductionVideo", true);
+  }, []);
   useEffect(() => {
     setStartGame(true);
     fetchPokemon(
@@ -74,6 +94,21 @@ export default function App() {
   return (
     <div className="background">
       {/* <Test /> */}
+      <Modal
+        open={introductionModal}
+        onClose={closeIntroductionModal}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Zoom timeout={300} in={introductionModal}>
+          <div style={{ maxWidth: 560, margin: "auto", outline: "none" }}>
+            <Introduction closeIntroductionModal={closeIntroductionModal} />
+          </div>
+        </Zoom>
+      </Modal>
       <PokemonProvider
         value={{
           pokemonState: [pokemon, setPokemon],
