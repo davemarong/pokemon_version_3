@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import PokemonContext from "../context/pokemonContext";
 import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
@@ -23,7 +23,9 @@ export default function SelectGeneration() {
   const { urlState } = useContext(PokemonContext);
   const [url, setUrl] = urlState;
   const [checked, setChecked] = useState(true);
-  const [currentGen, setCurrentGen] = useState("Generation 1 is active");
+  const [currentGen, setCurrentGen] = useState(2);
+  const resetGen = [false, false, false, false, false, false, false, false];
+  const [gen, setGen] = useState(resetGen);
   const handleChange = () => {
     setChecked((prev) => !prev);
   };
@@ -31,9 +33,14 @@ export default function SelectGeneration() {
     setUrl({ firstNumber: minNumber, secondNumber: maxNumber });
   };
   const handleSwitchGen = (generation) => {
-    setCurrentGen(`${generation} is active`);
+    setCurrentGen(`Generation ${generation} is active`);
   };
-
+  const handleChangeGen = (x) => {
+    let newGen = resetGen;
+    newGen.splice(x, 1, true);
+    setGen(newGen);
+  };
+  console.log(gen, "Gen");
   const classes = useStyles();
   return (
     <Container maxWidth="sm">
@@ -52,9 +59,11 @@ export default function SelectGeneration() {
             >
               <Grid item>
                 <Button
+                  style={gen[0] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(1, 151);
-                    handleSwitchGen("Generation 1");
+                    handleSwitchGen(1);
+                    handleChangeGen(0);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -66,9 +75,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[1] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(152, 251);
-                    handleSwitchGen("Generation 2");
+                    handleSwitchGen(2);
+                    handleChangeGen(1);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -80,9 +91,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[2] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(252, 386);
-                    handleSwitchGen("Generation 3");
+                    handleSwitchGen(3);
+                    handleChangeGen(2);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -94,9 +107,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[3] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(387, 493);
-                    handleSwitchGen("Generation 4");
+                    handleSwitchGen(4);
+                    handleChangeGen(3);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -108,9 +123,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[4] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(494, 649);
-                    handleSwitchGen("Generation 5");
+                    handleSwitchGen(5);
+                    handleChangeGen(4);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -122,9 +139,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[5] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(650, 721);
-                    handleSwitchGen("Generation 6");
+                    handleSwitchGen(6);
+                    handleChangeGen(5);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -136,9 +155,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[6] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(722, 809);
-                    handleSwitchGen("Generation 7");
+                    handleSwitchGen(7);
+                    handleChangeGen(6);
                   }}
                   className="hint_button"
                   variant="contained"
@@ -150,9 +171,11 @@ export default function SelectGeneration() {
               </Grid>
               <Grid item>
                 <Button
+                  style={gen[7] ? { background: "green" } : { outline: "none" }}
                   onClick={() => {
                     handleWhichGeneration(810, 898);
-                    handleSwitchGen("Generation 8");
+                    handleSwitchGen(8);
+                    handleChangeGen(7);
                   }}
                   className="hint_button"
                   variant="contained"

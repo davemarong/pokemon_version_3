@@ -73,7 +73,7 @@ export default function App() {
   }, []);
   return (
     <div className="background">
-      <Test />
+      {/* <Test /> */}
       <PokemonProvider
         value={{
           pokemonState: [pokemon, setPokemon],

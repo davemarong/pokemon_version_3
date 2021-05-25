@@ -11,12 +11,8 @@ import { motion, useCycle } from "framer-motion";
 import { Card, Container } from "@material-ui/core";
 
 export default function DisplayPokemon() {
-  const {
-    pokemonState,
-    pokemonStatsState,
-    userStatsState,
-    animationState,
-  } = useContext(PokemonContext);
+  const { pokemonState, pokemonStatsState, userStatsState, animationState } =
+    useContext(PokemonContext);
   const [pokemon, setPokemon] = pokemonState;
   const [pokemonStats, setPokemonStats] = pokemonStatsState;
   const [userStats, setUserStats] = userStatsState;
@@ -90,6 +86,14 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      style={
+                        idPS
+                          ? {
+                              background:
+                                "linear-gradient(to right, #22838a, #36518c)",
+                            }
+                          : null
+                      }
                       size="small"
                       variant="contained"
                       color="primary"
@@ -119,6 +123,14 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      style={
+                        heightPS
+                          ? {
+                              background:
+                                "linear-gradient(to right, #22838a, #36518c)",
+                            }
+                          : null
+                      }
                       className="hint_button"
                       size="small"
                       variant="contained"
@@ -137,7 +149,7 @@ export default function DisplayPokemon() {
                   <Grid container justify="flex-start" item xs>
                     <div>
                       {heightPS ? (
-                        <Typography align="center">{height}</Typography>
+                        <Typography align="center">{height / 10} m</Typography>
                       ) : (
                         <Typography align="center">...</Typography>
                       )}
@@ -148,6 +160,14 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      style={
+                        type1PS
+                          ? {
+                              background:
+                                "linear-gradient(to right, #22838a, #36518c)",
+                            }
+                          : null
+                      }
                       className="hint_button"
                       size="small"
                       variant="contained"
@@ -179,6 +199,14 @@ export default function DisplayPokemon() {
                   <Grid item xs={2}></Grid>
                   <Grid item xs={4}>
                     <Button
+                      style={
+                        type2PS
+                          ? {
+                              background:
+                                "linear-gradient(to right, #22838a, #36518c)",
+                            }
+                          : null
+                      }
                       className="hint_button"
                       size="small"
                       variant="contained"
@@ -216,6 +244,14 @@ export default function DisplayPokemon() {
                   direction="column"
                 >
                   <Button
+                    style={
+                      imgPS
+                        ? {
+                            background:
+                              "linear-gradient(to right, #22838a, #36518c)",
+                          }
+                        : null
+                    }
                     className="hint_button imgHint"
                     size="small"
                     variant="contained"
@@ -229,7 +265,7 @@ export default function DisplayPokemon() {
                       handlePokemonStatsImg();
                     }}
                   >
-                    Img
+                    Image
                   </Button>
                 </Grid>
                 <Grid container justify="center" item xs={12}>
